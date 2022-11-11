@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+int wronginput();
+int gameover();
+char arr[10]={'1','2','3','4','5','6','7','8','9'};
+
+int main()
+{   int turn=1;
+    int player;
+
+    int x=gameover();
+    while (x==0 && turn<10){
+   // printf("%d",x);
+    system("cls");
+    printf("*********TIC*TAC*TOE**********\n");
+    printf("Player 1 (x)  -  Player 2 (o)\n");
+    printf("******************************\n");
+    printf("   |   |   \n");
+    printf(" %c | %c | %c \n",arr[0],arr[1],arr[2]);
+    printf("___|___|___\n");
+    printf("   |   |   \n");
+    printf(" %c | %c | %c \n",arr[3],arr[4],arr[5]);
+    printf("___|___|___\n");
+    printf("   |   |   \n");
+    printf(" %c | %c | %c\n",arr[6],arr[7],arr[8]);
+    printf("   |   |   \n");
+
+    int value=1;
+
+    if (turn!=1 && turn%2==0 )
+        player=2;
+    else
+            player=1;
+
+    printf("Player %d,enter a number : ",player);
+    scanf("%d",&value);
+
+
+    while ( value>9 || value<1){
+        printf("Enter Valid Number 1 !! :");
+        scanf("%d",&value);}
+    while(arr[value-1]=='x' || arr[value-1]=='o' ){
+        printf("Enter Valid Number 2 !! :");
+        scanf("%d",&value);
+                   }
+
+    if (player==1)
+        arr[value-1]='x';
+    else if (player==2)
+        arr[value-1]='o';
+
+    if (turn==9 && gameover()!=1)
+        printf("Match Draw , No one WON !!");
+    turn ++;
+    x=gameover();
+    //printf("%d",x);
+
+  }
+  if (x==1)
+    printf("\n     Player %d Won !!     \n",player );
+  return 0;
+}
+
+int gameover()
+{
+   // x[10]=arr[10];
+
+    if (arr[0]==arr[1] && arr[1]==arr[2])
+        return 1;
+    else if (arr[3]==arr[4] && arr[4]==arr[5])
+        return 1;
+    else if (arr[6]==arr[7] && arr[7]==arr[8])
+        return 1;
+    else if (arr[2]==arr[4] && arr[4]==arr[6])
+        return 1;
+    else if (arr[0]==arr[4] && arr[4]==arr[8])
+        return 1;
+     else if (arr[0]==arr[3] && arr[3]==arr[6])
+        return 1;
+     else if (arr[1]==arr[4] && arr[4]==arr[7])
+        return 1;
+     else if (arr[2]==arr[5] && arr[5]==arr[8])
+        return 1;
+
+    else
+        return 0;
+
+}
+
+
